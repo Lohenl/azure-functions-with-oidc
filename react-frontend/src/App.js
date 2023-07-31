@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { InteractionStatus } from '@azure/msal-browser';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { Routes, HashRouter, Route } from 'react-router-dom';
+import { AuthProvider } from './pages/.sharedcontexts/AuthContext';
 
 import { loginRequest } from './helpers/AuthConfig';
 
@@ -102,8 +103,8 @@ function App() {
           <Fragment>
             <p>Logged In</p>
             <HashRouter>
-              {/* <AuthProvider>
-              <NotificationProvider>
+              <AuthProvider>
+              {/* <NotificationProvider>
                 <NotificationContainer />
                 <AnnouncementProvider>
                   <DrawerRouterContainer>
@@ -125,8 +126,8 @@ function App() {
                     </Routes>
                   </DrawerRouterContainer>
                 </AnnouncementProvider>
-              </NotificationProvider>
-            </AuthProvider> */}
+              </NotificationProvider> */}
+            </AuthProvider>
             </HashRouter>
           </Fragment>
         )}
