@@ -2,9 +2,14 @@ import { Fragment, useEffect, useState } from 'react'
 import { InteractionStatus } from '@azure/msal-browser';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { Routes, HashRouter, Route } from 'react-router-dom';
-import { AuthProvider } from './pages/.sharedcontexts/AuthContext';
+import { v4 as uuidv4 } from 'uuid';
 
 import { loginRequest } from './helpers/AuthConfig';
+import DrawerRouterContainer from './components/Layout/DrawerRouterContainer';
+import { AuthProvider } from './pages/.sharedcontexts/AuthContext';
+import { authProtectedRoutes, publicRoutes } from './routes/';
+
+import '@progress/kendo-theme-bootstrap/dist/all.css';
 
 function App() {
 
@@ -101,7 +106,7 @@ function App() {
             <p>Logged In</p>
             <HashRouter>
               <AuthProvider>
-              {/* <DrawerRouterContainer>
+              <DrawerRouterContainer>
                     <Routes>
                       {publicRoutes.map((route) => (
                         <Route
@@ -118,7 +123,7 @@ function App() {
                         />
                       ))}
                     </Routes>
-                  </DrawerRouterContainer>*/}
+                  </DrawerRouterContainer>
             </AuthProvider>
             </HashRouter>
           </Fragment>
