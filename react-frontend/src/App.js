@@ -104,10 +104,7 @@ function App() {
             <p>Logged In</p>
             <HashRouter>
               <AuthProvider>
-              {/* <NotificationProvider>
-                <NotificationContainer />
-                <AnnouncementProvider>
-                  <DrawerRouterContainer>
+              {/* <DrawerRouterContainer>
                     <Routes>
                       {publicRoutes.map((route) => (
                         <Route
@@ -124,9 +121,7 @@ function App() {
                         />
                       ))}
                     </Routes>
-                  </DrawerRouterContainer>
-                </AnnouncementProvider>
-              </NotificationProvider> */}
+                  </DrawerRouterContainer>*/}
             </AuthProvider>
             </HashRouter>
           </Fragment>
