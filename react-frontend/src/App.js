@@ -3,6 +3,7 @@ import { InteractionStatus } from '@azure/msal-browser';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { Routes, HashRouter, Route } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { Loader } from "@progress/kendo-react-indicators";
 
 import { loginRequest } from './helpers/AuthConfig';
 import DrawerRouterContainer from './components/Layout/DrawerRouterContainer';
@@ -65,10 +66,13 @@ function App() {
 
   // }, [isAuthenticated, inProgress, instance]);
 
-// https://stackoverflow.com/questions/66405214/browserautherror-interaction-in-progress-interaction-is-currently-in-progress
-// https://stackoverflow.com/questions/66405214/browserautherror-interaction-in-progress-interaction-is-currently-in-progress
+  // https://stackoverflow.com/questions/66405214/browserautherror-interaction-in-progress-interaction-is-currently-in-progress
+  // https://stackoverflow.com/questions/66405214/browserautherror-interaction-in-progress-interaction-is-currently-in-progress
 
   useEffect(() => {
+    console.log(isAuthenticated);
+    console.log(inProgress);
+    console.log(instance);
     const forceLogin = async () => {
       const tokenResponse = await instance.handleRedirectPromise();
       console.log(tokenResponse);
@@ -96,37 +100,34 @@ function App() {
       <UnauthenticatedTemplate>
         <p style={{ marginTop: '200px', textAlign: 'center' }}>Please wait while we redirect you to login</p>
         <div style={{ textAlign: 'center' }}>
-          <p>Woot</p>
+          <Loader size="large" type={'converging-spinner'} />
         </div>
       </UnauthenticatedTemplate>
 
       <AuthenticatedTemplate>
         {loggedIn && (
-          <Fragment>
-            <p>Logged In</p>
-            <HashRouter>
-              <AuthProvider>
+          <HashRouter>
+            <AuthProvider>
               <DrawerRouterContainer>
-                    <Routes>
-                      {publicRoutes.map((route) => (
-                        <Route
-                          path={route.path}
-                          element={<route.component />}
-                          key={uuidv4()}
-                        />
-                      ))}
-                      {authProtectedRoutes.map((route) => (
-                        <Route
-                          path={route.path}
-                          element={<route.component />}
-                          key={uuidv4()}
-                        />
-                      ))}
-                    </Routes>
-                  </DrawerRouterContainer>
+                <Routes>
+                  {publicRoutes.map((route) => (
+                    <Route
+                      path={route.path}
+                      element={<route.component />}
+                      key={uuidv4()}
+                    />
+                  ))}
+                  {authProtectedRoutes.map((route) => (
+                    <Route
+                      path={route.path}
+                      element={<route.component />}
+                      key={uuidv4()}
+                    />
+                  ))}
+                </Routes>
+              </DrawerRouterContainer>
             </AuthProvider>
-            </HashRouter>
-          </Fragment>
+          </HashRouter>
         )}
       </AuthenticatedTemplate>
 

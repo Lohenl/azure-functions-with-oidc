@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import HeaderProfilePopup from './HeaderProfilePopup';
 import avatarPlaceholder from '../../assets/images/placeholder/kendoka-react.png';
 import { authProvider } from '../../helpers/authProvider';
-// import { authProviderV2 } from '../../helpers/authProviderV2';
 
 const Header = ({ toggleDrawerExpansion, isAuthProtected }) => {
     const profileAnchor = useRef(null);
@@ -110,8 +109,7 @@ const Header = ({ toggleDrawerExpansion, isAuthProtected }) => {
                                 ref={profileAnchor}
                                 className="k-button k-button-md k-rounded-md k-button-flat k-button-flat-base"
                             >
-                                {authProvider.account.name}
-                                {/* {authProviderV2.getAllAccounts()[0]?.name} */}
+                                {authProvider.getAllAccounts()[0]?.name}
                                 <Avatar type="image">
                                     <img src={avatarPlaceholder} alt={'Personal Avatar'} />
                                 </Avatar>
