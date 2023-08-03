@@ -6,9 +6,7 @@ const apiEndPoint = process.env.REACT_APP_AZURE_FUNCTIONS_URL;
 module.exports = {
   appId,
   tenantId,
-  // scopes: ['user.read', 'profile'],
-  scopes: ['openid', 'email', 'user.read', 'profile'],
+  scopes: ['openid', 'offline_access', 'email', 'profile', 'user.read'],
   redirectUri: 'http://localhost:3000',
   apiEndPoint,
-  // appInsightInstrumentationKey: '467657f9-b09d-4563-8f82-352c1e18952e',
 };
