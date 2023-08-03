@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "azure-functions-core-tools": "^4.0.5198"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.1"
   }
 }
