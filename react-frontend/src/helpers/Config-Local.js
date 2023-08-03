@@ -2,6 +2,9 @@
 const appId = process.env.REACT_APP_AZURE_APP_ID;
 const tenantId = process.env.REACT_APP_AZURE_TENANT_ID;
 
+// OIDC scope samples reference:
+// https://openid.net/specs/openid-connect-basic-1_0.html#Scopes
+
 module.exports = {
   appId,
   tenantId,
