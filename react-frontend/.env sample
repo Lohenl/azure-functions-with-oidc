@@ -1,0 +1,7 @@
+# For react-scripts env, you will need to prefix with REACT_APP_
+# REACT_APP_ENV="local"
+REACT_APP_ENV="development"
+SKIP_PREFLIGHT_CHECK=true
+REACT_APP_AZURE_APP_ID="<your-client-id-here>"
+REACT_APP_AZURE_TENANT_ID="<your-tenant-id-here>"
+REACT_APP_AZURE_FUNCTIONS_URL="<your-function-url-here>"
