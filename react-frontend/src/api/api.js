@@ -19,30 +19,30 @@ const setToken = async (request) => {
         console.log('getting token')
         const currentAccounts = authProvider.getAllAccounts();
         const token = await authProvider.acquireTokenSilent({
-          ...loginRequest,
-          account: currentAccounts[0]
+            ...loginRequest,
+            account: currentAccounts[0]
         })
-          .catch(error => {
-            console.log('acquireTokenSilent encountered an error');
-            console.log(error);
-            // acquireTokenSilent can fail for a number of reasons, fallback to interaction
-            if (error instanceof InteractionRequiredAuthError) {
-                authProvider.acquireTokenRedirect(loginRequest);
-            }
-            throw error;
-          });
+            .catch(error => {
+                console.log('acquireTokenSilent encountered an error');
+                console.log(error);
+                // acquireTokenSilent can fail for a number of reasons, fallback to interaction
+                if (error instanceof InteractionRequiredAuthError) {
+                    authProvider.acquireTokenRedirect(loginRequest);
+                }
+                throw error;
+            });
         console.log(token);
-        // TODO: idk but normally you should be sending access tokens, but this is a prob over HTTPS
-        request.headers['Authorization'] = `Bearer ${token.accessToken}`;
-        // TODO: would using ID Tokens work?
-        // request.headers['Authorization'] = `Bearer ${token.idToken}`;
+        // https://sebastian-rogers.medium.com/idx10501-signature-validation-failed-unable-to-match-key-91e69f05efdd
+        // TL;DR When using MSAL to authenticate against an Azure Function App make sure you use the idToken and not the accessToken.
+        // request.headers['Authorization'] = `Bearer ${token.accessToken}`;
+        request.headers['Authorization'] = `Bearer ${token.idToken}`;
 
     } catch (err) {
         console.log(err);
         console.log('setToken error')
         // Acquire token silent failure, and send an interactive request
         if (err instanceof InteractionRequiredAuthError) {
-          authProvider.acquireTokenRedirect(loginRequest);
+            authProvider.acquireTokenRedirect(loginRequest);
         }
     }
 };
