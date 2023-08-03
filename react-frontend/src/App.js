@@ -23,48 +23,6 @@ function App() {
   // reference: // https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/errors.md#interaction_in_progress
   // TODO: consider tying in MsalProvider with createHashProvider
   // ideal state is that I dont use a messy combo of react state, conditional renders and auth/unauthTemplates
-  // useEffect(() => {
-  //   console.log('App.js: useEffect()');
-  //   console.log(`isAuthenticated: ${isAuthenticated}, inProgress: ${inProgress}`);
-  //   if (inProgress === InteractionStatus.Startup) {
-  //     console.log('still starting up')
-  //     return;
-  //   };
-  //   instance.handleRedirectPromise().then((tokenResponse) => {
-  //     if (!tokenResponse) {
-  //       // If .then was called but result is falsey, that means your app is not returning
-  //       // from a redirect operation (e.g. user visiting the site for the first time)
-  //       console.log('first time');
-  //       console.log(`isAuthenticated: ${isAuthenticated}, inProgress: ${inProgress}`);
-  //       // V1
-  //       // instance.loginRedirect(loginRequest);
-
-  //       // V2
-  //       const accounts = instance.getAllAccounts();
-  //       if (accounts.length === 0) {
-  //         // No user signed in
-  //         if (!isAuthenticated && inProgress === InteractionStatus.None) {
-  //           console.log('BOOM MOTHERLOVER')
-  //           instance.loginRedirect();
-  //         }
-  //       }
-  //     } else {
-  //       // If result is truthy, your app returned from a redirect operation,
-  //       // and it completed successfully
-  //       console.log('redirect was successful');
-  //       console.log(`isAuthenticated: ${isAuthenticated}, inProgress: ${inProgress}`);
-  //       if (!isAuthenticated && inProgress === InteractionStatus.None) {
-  //         console.log('App.js: loginRedirect()');
-  //         instance.loginRedirect(loginRequest);
-  //       } else {
-  //         console.log('App.js: setLoggedIn()');
-  //         setLoggedIn(true);
-  //       }
-  //     }
-  //   })
-
-
-  // }, [isAuthenticated, inProgress, instance]);
 
   // https://stackoverflow.com/questions/66405214/browserautherror-interaction-in-progress-interaction-is-currently-in-progress
   // https://stackoverflow.com/questions/66405214/browserautherror-interaction-in-progress-interaction-is-currently-in-progress
